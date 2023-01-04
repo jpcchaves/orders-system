@@ -11,5 +11,6 @@ public class UserResource {
 
   public ResponseEntity<User> findAll() {
 
+    return null;
   }
 }
