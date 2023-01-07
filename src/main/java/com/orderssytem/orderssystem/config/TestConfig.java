@@ -1,8 +1,10 @@
 package com.orderssytem.orderssystem.config;
 
+import com.orderssytem.orderssystem.entities.Category;
 import com.orderssytem.orderssystem.entities.Order;
 import com.orderssytem.orderssystem.entities.User;
 import com.orderssytem.orderssystem.entities.enums.OrderStatus;
+import com.orderssytem.orderssystem.repositories.CategoryRepository;
 import com.orderssytem.orderssystem.repositories.OrderRepository;
 import com.orderssytem.orderssystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +19,33 @@ import java.util.Arrays;
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
-  @Autowired
-  private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-  @Autowired
-  private OrderRepository orderRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
-  @Override
-  public void run(String... args) throws Exception {
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-  User u1 = new User(null, "João", "jooao@gmail.com", "12311212", "1234324");
-  User u2 = new User(null, "Zezin", "zezin@gmail.com", "12311212", "1234324");
+    @Override
+    public void run(String... args) throws Exception {
 
-  Order o1 = new Order(null, Instant.parse("2023-01-06T22:35:00Z"),
-          OrderStatus.PAID, u1);
-  Order o2 = new Order(null, Instant.parse("2023-01-06T22:35:00Z"),
-          OrderStatus.CANCELED, u2);
+        User u1 = new User(null, "João", "jooao@gmail.com", "12311212", "1234324");
+        User u2 = new User(null, "Zezin", "zezin@gmail.com", "12311212", "1234324");
 
-  userRepository.saveAll(Arrays.asList(u1, u2));
-  orderRepository.saveAll(Arrays.asList(o1, o2));
-  }
+        Order o1 = new Order(null, Instant.parse("2023-01-06T22:35:00Z"),
+                OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2023-01-06T22:35:00Z"),
+                OrderStatus.CANCELED, u2);
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+
+        userRepository.saveAll(Arrays.asList(u1, u2));
+        orderRepository.saveAll(Arrays.asList(o1, o2));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+    }
 }

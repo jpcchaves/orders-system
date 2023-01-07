@@ -14,21 +14,21 @@ import java.util.Optional;
 @Service
 public class OrderService {
 
-  @Autowired
-  private OrderRepository orderRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
-  public List<Order> findAll() {
-    return orderRepository.findAll();
-  }
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
 
-  public Order findById(Long id) {
-    Optional<Order> order = orderRepository.findById(id);
+    public Order findById(Long id) {
+        Optional<Order> order = orderRepository.findById(id);
 
-    return order.get();
-  }
+        return order.get();
+    }
 
-  public Order create(@RequestBody Order newUser){
-    return orderRepository.save(newUser);
-  }
+    public Order create(@RequestBody Order newUser) {
+        return orderRepository.save(newUser);
+    }
 
 }
