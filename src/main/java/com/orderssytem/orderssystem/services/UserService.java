@@ -2,6 +2,7 @@ package com.orderssytem.orderssystem.services;
 
 import com.orderssytem.orderssystem.entities.User;
 import com.orderssytem.orderssystem.repositories.UserRepository;
+import com.orderssytem.orderssystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class UserService {
     public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
 
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User create(@RequestBody User newUser) {
