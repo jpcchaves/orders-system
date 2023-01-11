@@ -11,7 +11,7 @@
 	<groupId>com.orders-sytem</groupId>
 	<artifactId>orders-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>orders-system</name>
+	<name>orders-system</name> 
 	<description>An simple order system</description>
 	<properties>
 		<java.version>17</java.version>
